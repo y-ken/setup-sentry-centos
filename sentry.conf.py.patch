@@ -1,0 +1,72 @@
+--- a/sentry.conf.py
++++ b/sentry.conf.py
+@@ -15,11 +15,11 @@ DATABASES = {
+
+         # If you change this, you'll also need to install the appropriate python
+         # package: psycopg2 (Postgres) or mysql-python
+-        'ENGINE': 'django.db.backends.sqlite3',
++        'ENGINE': 'django.db.backends.mysql',
+
+-        'NAME': os.path.join(CONF_ROOT, 'sentry.db'),
+-        'USER': 'postgres',
+-        'PASSWORD': '',
++        'NAME': 'sentry',
++        'USER': 'sentry',
++        'PASSWORD': 'sentry',
+         'HOST': '',
+         'PORT': '',
+
+@@ -48,6 +48,17 @@ DATABASES = {
+ #     }
+ # }
+
++CACHES = {
++    'default': {
++        'BACKEND': 'redis_cache.RedisCache',
++        'LOCATION': '127.0.0.1:6379',
++        'OPTIONS': {
++            'DB': 1,
++            'PARSER_CLASS': 'redis.connection.HiredisParser'
++        },
++    },
++}
++
+ ###########
+ ## Queue ##
+ ###########
+@@ -57,8 +68,8 @@ DATABASES = {
+ # on a Python framework called Celery to manage queues.
+
+ # You can enable queueing of jobs by turning off the always eager setting:
+-# CELERY_ALWAYS_EAGER = False
+-# BROKER_URL = 'redis://localhost:6379'
++CELERY_ALWAYS_EAGER = False
++BROKER_URL = 'redis://localhost:6379/2'
+
+ ####################
+ ## Update Buffers ##
+@@ -72,15 +83,15 @@ DATABASES = {
+ # You'll need to install the required dependencies for Redis buffers:
+ #   pip install redis hiredis nydus
+ #
+-# SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
+-# SENTRY_REDIS_OPTIONS = {
+-#     'hosts': {
+-#         0: {
+-#             'host': '127.0.0.1',
+-#             'port': 6379,
+-#         }
+-#     }
+-# }
++SENTRY_BUFFER = 'sentry.buffer.redis.RedisBuffer'
++SENTRY_REDIS_OPTIONS = {
++    'hosts': {
++        0: {
++            'host': '127.0.0.1',
++            'port': 6379,
++        }
++    }
++}
+
+ ################
+ ## Web Server ##
