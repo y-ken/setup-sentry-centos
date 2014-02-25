@@ -19,7 +19,7 @@ This scrips provides you to setup Sentry on CentOS 6.x with MySQL and Redis as Q
 ##### General Usage
 
 ```sh
-$ sudo git clone https://github.com/y-ken/docker-sentry-centos.git /usr/local/src/sentry/
+$ sudo git clone https://github.com/y-ken/setup-sentry-centos.git /usr/local/src/sentry/
 $ cd /usr/local/src/sentry/
 
 # execute setup script
@@ -40,8 +40,8 @@ Run with Linux Container named [Docker](https://www.docker.io/) is also supporte
 It is useful to access with ssh port-forwarding to your local machine after execute `docker run`.
 
 ```sh
-$ git clone https://github.com/y-ken/docker-sentry-centos.git
-$ cd docker-sentry-centos
+$ git clone https://github.com/y-ken/setup-sentry-centos.git
+$ cd setup-sentry-centos
 
 # build machine
 $ sudo docker build -rm -t sentry .
@@ -63,8 +63,8 @@ $ ssh -L 9000:172.17.0.8:9000 user@your-vps-server # execute at local machine
 ##### Vagrant
 
 ```sh
-$ git clone https://github.com/y-ken/docker-sentry-centos.git
-$ cd docker-sentry-centos
+$ git clone https://github.com/y-ken/setup-sentry-centos.git
+$ cd setup-sentry-centos
 
 # execute machine
 $ vagrant up
