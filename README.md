@@ -19,6 +19,9 @@ This scrips provides you to setup Sentry on CentOS 6.x with MySQL and Redis as Q
 #### General Usage
 
 ```sh
+# install git and patch first because they are missing on centos
+$ sudo yum install git patch
+
 $ sudo git clone https://github.com/y-ken/setup-sentry-centos.git /usr/local/src/sentry/
 $ cd /usr/local/src/sentry/
 
